@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from "react-router-dom";
+import Home from "./PeerCalling";
+import About from "./components/JoinRoom";
+import PeerJoinRoom from "./components/PeerJoinRoom";
+import { WebRTCProvider } from "./Context/RoomContext";
+import PeerToPeerWithInvite from "./components/PeerToPeerWithInvite";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/:id" element={<About />} /> */}
+        <Route path="/:id" element={<PeerJoinRoom />} />
+        <Route path="/invite" element={<PeerToPeerWithInvite />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

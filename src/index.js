@@ -1,17 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from "./App";
+import { ContextProvider } from "./Context/Context";
+import "./styles.css";
+import { WebRTCProvider } from "./Context/RoomContext";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+if (typeof process === "undefined") {
+  global.process = {
+    env: { NODE_ENV: "development" },
+    nextTick: (callback) => setTimeout(callback, 0), // Polyfill nextTick with setTimeout
+  };
+} else if (!process.nextTick) {
+  process.nextTick = (callback) => setTimeout(callback, 0);
+}
+
 root.render(
-  <React.StrictMode>
+  <>
+    {/* <ContextProvider> */}
     <App />
-  </React.StrictMode>
+    {/* </ContextProvider> */}
+  </>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -57,8 +57,6 @@ const usePeerConnection = ({ stream, sendMessage, userVideo, myVideo }) => {
   const leaveCall = () => {
     try {
       console.log("Attempting to leave call...");
-      // setCallEnded(true);
-
       // Stop all media tracks to end the video/audio stream
       if (stream) {
         stream.getTracks().forEach((track) => {

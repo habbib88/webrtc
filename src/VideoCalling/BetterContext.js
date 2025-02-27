@@ -6,7 +6,7 @@ import useWebSocketConnection from "./WebSocketConnection";
 import usePeerConnection from "./PeerConnection";
 
 const SocketContext = createContext();
-// Replace with your WebSocket server URL
+// Replace with your WebSocket server URL with this Url
 
 const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
@@ -43,7 +43,7 @@ const ContextProvider = ({ children }) => {
     initializationOfStream();
   }, []);
 
-  // Handle incoming messages from WebSocket
+  // Handle incoming messages from WebSocket from UI
   function handleIncomingMessage(data) {
     switch (data.type) {
       case "me":
@@ -76,16 +76,7 @@ const ContextProvider = ({ children }) => {
     userVideo,
     myVideo,
   });
-  // const joinRoom = (id) => {
-  //   setRoomId(id);
-  //   sendMessage(
-  //     JSON.stringify({
-  //       type: "joinRoom",
-  //       roomId: id,
-  //       userId: me,
-  //     })
-  //   );
-  // };
+   
   function shareScreen() {
     startScreenSharing({
       setScreenStream,
@@ -115,7 +106,6 @@ const ContextProvider = ({ children }) => {
         callUser,
         leaveCall,
         answerCall,
-        // joinRoom,
         roomId,
         setRoomId,
       }}
